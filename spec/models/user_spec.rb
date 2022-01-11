@@ -50,8 +50,8 @@ RSpec.describe User, type: :model do
     # examples for this class method here
     it 'Should authenticated successfully if a visitor types in a few spaces before and/or after their email address' do
       
-      @user1 = User.new({name: "Mark", email: "example@domain.com", password: "111111", password_confirmation: "111111"})
-      @user1.save
+      @user = User.new({name: "Mark", email: "example@domain.com", password: "111111", password_confirmation: "111111"})
+      @user.save
 
       @authenticated_user = User.authenticate_with_credentials(" example@domain.com ", "111111")
   
@@ -61,8 +61,8 @@ RSpec.describe User, type: :model do
 
     it 'Should authenticated successfully if a visitor types a wrong case for their email' do
       
-      @user1 = User.new({name: "Mark", email: "eXample@domain.COM", password: "111111", password_confirmation: "111111"})
-      @user1.save
+      @user = User.new({name: "Mark", email: "eXample@domain.COM", password: "111111", password_confirmation: "111111"})
+      @user.save
 
       @authenticated_user = User.authenticate_with_credentials("EXAMPLe@DOMAIN.CoM", "111111")
   
