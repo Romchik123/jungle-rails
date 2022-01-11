@@ -18,15 +18,15 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to eq ["Name can't be blank"]
     end
 
+    
+    it 'Should validate that the price equel to nil' do
+      @category = Category.new
+      @product = Product.new({name: "Mark", quantity: 10, category: @category}) 
+      @product.save
 
-    # Because of monitize nil converts to 0 ::
-    # it 'Should validate that the price equel to nil' do
-    #   @category = Category.new
-    #   @product = Product.new({name: "Mark", price: "", quantity: 10, category: @category}) 
-    #   @product.save
-
-    #   expect(@product.errors.full_messages).to eq ["Price is not a number"]
-    # end
+      expect(@product.errors.full_messages).not_to be_empty
+      expect(@product.errors.full_messages).to include("Price can't be blank")
+    end
 
 
     it 'Should validate that the quantity equel to nil' do
