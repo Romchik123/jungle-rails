@@ -18,22 +18,21 @@ RSpec.describe User, type: :model do
     end
 
 
-    # To comeback to this one later
-    # it 'Should check if this email is unique' do
-    #   @user1 = User.create({name: "Mark", email: "w@w.com", password: "111", password_confirmation: "111"})
-    #   @user1.save
+    it 'Should check if this email is unique' do
+      @user1 = User.new({name: "Mark", email: "w@w.com", password: "111111", password_confirmation: "111111"})
+      @user1.save
 
-    #   @user2 = User.create({name: "Greg", email: "W@W.com", password: "111", password_confirmation: "111"}) 
-    #   @user2.save
+      @user2 = User.new({name: "Greg", email: "W@W.com", password: "111111", password_confirmation: "111111"}) 
+      @user2.save
   
-    #   expect(@user2.id).to be_nil
-    # end
+      expect(User.all.count).to eq(1)
+      expect(@user2.id).to be_nil
+    end
 
 
-    # To comeback to this one later
     it 'Should require name and Email' do
-      @user = User.create({name: nil, email: nil, password: "111", password_confirmation: "111"}) 
-  
+      @user = User.new({name: nil, email: nil, password: "111", password_confirmation: "111"}) 
+      
       expect(@user.save).to be false
     end
   end
